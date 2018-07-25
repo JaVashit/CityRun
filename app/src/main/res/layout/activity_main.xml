@@ -32,12 +32,13 @@
                 android:layout_weight="1"
                 android:orientation="horizontal"/>-->
 
-            <TextView
+            <fragment
+                android:id="@+id/map"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="지도"
                 android:layout_weight="1"
-                android:gravity="center"/>
+                android:gravity="center"
+                class="com.google.android.gms.maps.MapFragment" />
 
             <Button
                 android:layout_width="match_parent"
