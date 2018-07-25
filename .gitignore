@@ -1,6 +1,6 @@
 *.iml
 .gradle
-/!gradle/wrapper/gradle-wrapeer.jard
+/!gradle/wrapper/gradle-wrapper.jar
 /local.properties
 /.idea/libraries
 /.idea/modules.xml
