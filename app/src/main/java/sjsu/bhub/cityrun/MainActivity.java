@@ -1,5 +1,6 @@
 package sjsu.bhub.cityrun;
 
+import android.app.FragmentManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -9,10 +10,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import sjsu.bhub.cityrun.databinding.ActivityMainBinding;
 import sjsu.bhub.cityrun.service.StepCountService;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding> {
+public class MainActivity extends BaseActivity<ActivityMainBinding> implements OnMapReadyCallback{
 
     private final String TAG = "MainActivity";
 
@@ -27,6 +35,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        MapFragment mapFragment = (MapFragment)fragmentManager
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         initView();
         startStepCountService();
@@ -56,6 +69,20 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                 }
             }
         });
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+        LatLng BOX = new LatLng(37.335657, -121.884988);
+
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(BOX);
+        googleMap.addMarker(markerOptions);
+
+
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(BOX));
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(10));
     }
 
     class PlayingReceiver extends BroadcastReceiver {
