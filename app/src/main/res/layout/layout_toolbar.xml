@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable name="rightButton" type="Integer"/>
+    </data>
+
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:padding="8dp"
+        android:background="@drawable/border_underline">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                style="@style/imageViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/splash_temp"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"/>
+
+            <ImageButton
+                android:visibility="@{rightButton}"
+                android:id="@+id/button_toolbar_right"
+                style="@style/imageViewStyle"
+                android:layout_width="24dp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/menu"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+</layout>

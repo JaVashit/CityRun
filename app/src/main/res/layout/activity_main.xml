@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="activity"
+            type="sjsu.bhub.cityrun.MainActivity"/>
+    </data>
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/drawer_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/layout_toolbar"
+                bind:rightButton="@{View.VISIBLE}"/>
+
+            <!--<LinearLayout
+                android:id="@+id/map_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"/>-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="지도"
+                android:layout_weight="1"
+                android:gravity="center"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="GO TO AR"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/drawer_menu"
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"
+            android:orientation="vertical"
+            android:background="@android:color/white">
+
+            <include
+                android:id="@+id/layout_drawer_menu"
+                layout="@layout/layout_drawer_menu"/>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.DrawerLayout>
+</layout>
