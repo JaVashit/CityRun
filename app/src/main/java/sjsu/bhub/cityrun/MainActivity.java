@@ -18,14 +18,17 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import sjsu.bhub.cityrun.databinding.ActivityMainBinding;
+import sjsu.bhub.cityrun.service.LocationService;
 import sjsu.bhub.cityrun.service.StepCountService;
+import sjsu.bhub.cityrun.utils.PermissionUtil;
 
-public class MainActivity extends BaseActivity<ActivityMainBinding> implements OnMapReadyCallback{
-
+public class MainActivity extends BaseActivity<ActivityMainBinding> implements OnMapReadyCallback {
     private final String TAG = "MainActivity";
+    public static final String EXTRA_LATITUDE = "EXTRA_LATITUDE";
+    public static final String EXTRA_LONGITUDE = "EXTRA_LONGITUDE";
 
     private String serviceData;
-    private boolean flag = true;
+    private GoogleMap googleMap;
 
     @Override
     protected int getLayoutId() {
@@ -35,14 +38,70 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        PermissionUtil.getPermission(this);
+
+        initView();
+        startLocationService();
+        startStepCountService();
+    }
+
+    private void initView() {
 
         FragmentManager fragmentManager = getFragmentManager();
         MapFragment mapFragment = (MapFragment)fragmentManager
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        initView();
-        startStepCountService();
+        binding.toolbar.buttonToolbarRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(binding.drawerLayout.isDrawerOpen(binding.drawerMenu)) {
+                    binding.drawerLayout.closeDrawer(binding.drawerMenu);
+                } else {
+                    binding.drawerLayout.openDrawer(binding.drawerMenu);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        googleMap = map;
+
+        updateLocation(37.335657, -121.884988);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        processLocationCallBack(intent);
+    }
+
+    private void startLocationService() {
+        Intent intent = new Intent(getApplicationContext(), LocationService.class);
+        startService(intent);
+    }
+
+    private void processLocationCallBack(Intent intent) {
+        if(intent != null) {
+            double latitude = intent.getDoubleExtra(EXTRA_LATITUDE, 0);
+            double longitude = intent.getDoubleExtra(EXTRA_LONGITUDE, 0);
+
+            showSnackBar("latitude: " + latitude + ",longitude: " + longitude);
+            updateLocation(latitude, longitude);
+        }
+    }
+
+    private void updateLocation(double lat, double lon){
+        if(googleMap == null){
+            return;
+        }
+        LatLng location = new LatLng(lat, lon);
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(location);
+        googleMap.addMarker(markerOptions);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(lat, lon)));
+        googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
     }
 
     private void startStepCountService() {
@@ -58,38 +117,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
         }
     }
 
-    private void initView() {
-        binding.toolbar.buttonToolbarRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(binding.drawerLayout.isDrawerOpen(binding.drawerMenu)) {
-                    binding.drawerLayout.closeDrawer(binding.drawerMenu);
-                } else {
-                    binding.drawerLayout.openDrawer(binding.drawerMenu);
-                }
-            }
-        });
-    }
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-
-        LatLng BOX = new LatLng(37.335657, -121.884988);
-
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(BOX);
-        googleMap.addMarker(markerOptions);
-
-
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(BOX));
-        googleMap.animateCamera(CameraUpdateFactory.zoomTo(10));
-    }
-
     class PlayingReceiver extends BroadcastReceiver {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.i("PlayignReceiver", "IN");
+            Log.i("PlayigReceiver", "IN");
             serviceData = intent.getStringExtra("stepService");
             binding.layoutDrawerMenu.textStepCount.setText(serviceData);
             Toast.makeText(getApplicationContext(), "Playing game", Toast.LENGTH_SHORT).show();

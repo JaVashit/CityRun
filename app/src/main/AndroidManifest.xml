@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="sjsu.bhub.cityrun">
 
+    <!-- HTTP 통신 퍼미션 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- GPS 퍼미션 -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -36,5 +42,6 @@
             android:enabled="true"
             android:exported="true"></service>
     </application>
+
 
 </manifest>
