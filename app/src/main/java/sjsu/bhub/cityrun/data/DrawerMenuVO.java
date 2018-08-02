@@ -1,12 +1,14 @@
-package sjsu.bhub.cityrun;
+package sjsu.bhub.cityrun.data;
 
 public class DrawerMenuVO {
     private int menuIconId;
     private String menuName;
+    private String menuUnit;
 
-    public DrawerMenuVO(int menuIconId, String menuName) {
+    public DrawerMenuVO(int menuIconId, String menuName, String menuUnit) {
         this.menuIconId = menuIconId;
         this.menuName = menuName;
+        this.menuUnit = menuUnit;
     }
 
     public int getMenuIconId() {
@@ -23,5 +25,13 @@ public class DrawerMenuVO {
 
     public void setMenuName(String menuName) {
         this.menuName = menuName;
+    }
+
+    public String getMenuUnit() {
+        return menuUnit;
+    }
+
+    public void setMenuUnit(String menuUnit) {
+        this.menuUnit = menuUnit;
     }
 }

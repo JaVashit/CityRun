@@ -20,7 +20,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value=""
             />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".view.launch.SplashActivity">
 
 
             <intent-filter>
@@ -29,8 +29,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".view.launch.LoginActivity" />
+        <activity android:name=".view.main.MainActivity" />
 
         <service
             android:name=".service.StepCountService"

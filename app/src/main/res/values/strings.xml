@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">CityRun</string>
+    <string name="app_name">Gold Rush</string>
+    <string name="logout">Log Out</string>
 </resources>

@@ -1,4 +1,4 @@
-package sjsu.bhub.cityrun;
+package sjsu.bhub.cityrun.view.main;
 
 import android.app.FragmentManager;
 import android.content.BroadcastReceiver;
@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
 
@@ -18,6 +20,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
 
+import sjsu.bhub.cityrun.BaseActivity;
+import sjsu.bhub.cityrun.R;
 import sjsu.bhub.cityrun.data.DrawerMenuVO;
 import sjsu.bhub.cityrun.databinding.ActivityMainBinding;
 import sjsu.bhub.cityrun.service.LocationService;
@@ -83,15 +87,24 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
     }
 
     private void initDrawerMenu() {
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        /*layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                return 0;
+            }
+        });*/
+        binding.layoutDrawerMenu.recyclerViewMenu.setLayoutManager(layoutManager);
+
         ArrayList<DrawerMenuVO> menuList = new ArrayList<>();
-        menuList.add(new DrawerMenuVO(R.drawable.icon_step, "5000 / 10000 step"));
-        menuList.add(new DrawerMenuVO(R.drawable.icon_point, "2000 P"));
-        menuList.add(new DrawerMenuVO(R.drawable.icon_cal, "400 KCal"));
-        menuList.add(new DrawerMenuVO(R.drawable.icon_map, "5 km"));
-        menuList.add(new DrawerMenuVO(R.drawable.icon_store, "Store"));
+        menuList.add(new DrawerMenuVO(R.drawable.icon_step, "5000", "STEP"));
+        menuList.add(new DrawerMenuVO(R.drawable.icon_treasure, "2000", "GOLD"));
+        menuList.add(new DrawerMenuVO(R.drawable.icon_fire, "400", "Kcal"));
+        menuList.add(new DrawerMenuVO(R.drawable.icon_distance, "5", "km"));
+//        menuList.add(new DrawerMenuVO(R.drawable.icon_store, "Store"));
 
         adapter = new DrawerMenuAdapter(this, menuList);
-        binding.layoutDrawerMenu.listViewMenu.setAdapter(adapter);
+        binding.layoutDrawerMenu.recyclerViewMenu.setAdapter(adapter);
     }
 
     @Override

@@ -6,7 +6,7 @@
         <import type="android.view.View"/>
         <variable
             name="activity"
-            type="sjsu.bhub.cityrun.MainActivity"/>
+            type="sjsu.bhub.cityrun.view.main.MainActivity"/>
     </data>
 
     <android.support.v4.widget.DrawerLayout
@@ -25,31 +25,36 @@
                 layout="@layout/layout_toolbar"
                 bind:rightButton="@{View.VISIBLE}"/>
 
-            <!--<LinearLayout
-                android:id="@+id/map_view"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:orientation="horizontal"/>-->
+                android:layout_height="match_parent">
 
-            <fragment
-                android:id="@+id/map"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                class="com.google.android.gms.maps.MapFragment" />
+                <fragment
+                    android:id="@+id/map"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    class="com.google.android.gms.maps.MapFragment" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="48dp"
-                android:text="GO TO AR"/>
+                <Button
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:layout_margin="16dp"
+                    android:layout_gravity="center|bottom"
+                    android:backgroundTint="@color/colorAccent"
+                    android:background="@drawable/border_round_box"
+                    android:textSize="15sp"
+                    android:text="AR MODE"
+                    android:textColor="@android:color/white"/>
 
+            </FrameLayout>
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/drawer_menu"
-            android:layout_width="320dp"
+            android:layout_width="280dp"
             android:layout_height="match_parent"
             android:layout_gravity="right"
             android:orientation="vertical"
@@ -60,6 +65,5 @@
                 layout="@layout/layout_drawer_menu"/>
 
         </LinearLayout>
-
     </android.support.v4.widget.DrawerLayout>
 </layout>

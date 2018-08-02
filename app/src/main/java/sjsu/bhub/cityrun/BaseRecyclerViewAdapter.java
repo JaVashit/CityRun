@@ -1,4 +1,4 @@
-package com.iindicar.indicar;
+package sjsu.bhub.cityrun;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,39 +7,7 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by yeseul on 2018-04-13.
- *
- *      public BaseRecyclerViewAdapter(Context context);
- *      public BaseRecyclerViewAdapter(Context context, List<T> itemList);
- *      public Context getContext();
- *      public int getItemCount();
- *      public T getItem(int position);
- *      public void updateItems(List<T> items);
- *      public void addItems(List<T> items);
- *      public void addItems(int position, List<T> items);
- *      public void addItem(T item);
- *      public void addItem(int position, T item);
- *      public void clearItems();
- *      public void removeItem(int position);
- *      public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position);
- *      protected abstract void onBindView(H holder, int position);
- *      public void setOnItemClickListener(OnItemClickListener onItemClickListener);
- *      public void setOnItemLongClickListener(OnItemLongClickListener onItemLongClickListener);
- *      public interface OnItemClickListener {
- *
- *              void onItemClick(View view, int position);
- *      }
- *      public interface OnItemLongClickListener {
- *
- *              void onItemLongClick(View view, int position);
- *      }
- *
- *
- */
-
 public abstract class BaseRecyclerViewAdapter<T, H extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
     protected List<T> itemList;
     protected OnItemClickListener onItemClickListener;
     protected OnItemLongClickListener onItemLongClickListener;

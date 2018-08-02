@@ -1,10 +1,13 @@
-package sjsu.bhub.cityrun;
+package sjsu.bhub.cityrun.view.launch;
 
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import sjsu.bhub.cityrun.R;
+import sjsu.bhub.cityrun.view.main.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

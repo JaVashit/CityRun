@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
 
-import sjsu.bhub.cityrun.MainActivity;
+import sjsu.bhub.cityrun.view.main.MainActivity;
 
 public class LocationService extends Service {
 
