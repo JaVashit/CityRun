@@ -45,6 +45,19 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
         startStepCountService();
     }
 
+    @Override
+    protected void onDestroy() {
+        finishService();
+        super.onDestroy();
+    }
+
+    public void finishService() {
+        Intent LocationService = new Intent(this, LocationService.class);
+        stopService(LocationService);
+        Intent StepCountService = new Intent(this, StepCountService.class);
+        stopService(StepCountService);
+    }
+
     private void initView() {
 
         FragmentManager fragmentManager = getFragmentManager();

@@ -30,5 +30,15 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
                 finish();
             }
         });
+
+        binding.buttonSignup.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+                startActivity(intent);
+                overridePendingTransition(R.anim.enter_no_anim, R.anim.exit_no_anim);
+                finish();
+            }
+        });
     }
 }
