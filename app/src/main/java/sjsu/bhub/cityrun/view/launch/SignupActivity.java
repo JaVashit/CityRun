@@ -11,8 +11,6 @@ import sjsu.bhub.cityrun.databinding.ActivitySignupBinding;
 
 public class SignupActivity extends BaseActivity<ActivitySignupBinding> {
 
-
-
     @Override
     protected int getLayoutId() {
         return R.layout.activity_signup;
@@ -39,8 +37,6 @@ public class SignupActivity extends BaseActivity<ActivitySignupBinding> {
 
         ArrayAdapter<CharSequence> arrayAdapter = ArrayAdapter.createFromResource(this, R.array.countryList, android.R.layout.simple_spinner_dropdown_item);
         binding.signupCountrySpinner.setAdapter(arrayAdapter);
-
-
     }
 
 }

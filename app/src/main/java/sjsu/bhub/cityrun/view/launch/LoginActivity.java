@@ -40,7 +40,6 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
                 Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
                 startActivity(intent);
                 overridePendingTransition(R.anim.enter_no_anim, R.anim.exit_no_anim);
-                finish();
             }
         });
     }
