@@ -11,66 +11,88 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/layout_toolbar"
-            bind:rightButton="@{View.GONE}"/>
-
-        <EditText
-            android:padding="4dp"
-            android:layout_margin="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:hint="ID"
-            android:background="@drawable/border_box"/>
-
-        <EditText
-            android:padding="4dp"
-            android:layout_margin="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:hint="PASSWORD"
-            android:background="@drawable/border_box"/>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:layout_weight="16"
+            android:layout_margin="20dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:orientation="vertical">
 
-            <EditText
-                android:padding="4dp"
-                android:layout_margin="8dp"
-                android:layout_width="0dp"
-                android:layout_height="32dp"
-                android:layout_weight="1"
-                android:hint="FIRST NAME"
-                android:background="@drawable/border_box"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_launcher_round"
+                android:layout_weight="3"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="30dp"/>
 
-            <EditText
-                android:padding="4dp"
-                android:layout_margin="8dp"
-                android:layout_width="0dp"
-                android:layout_height="32dp"
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="LAST NAME"
-                android:background="@drawable/border_box"/>
+                android:layout_marginTop="50dp">
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="email"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="password"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+
+
 
         </LinearLayout>
-
-        <EditText
-            android:padding="4dp"
-            android:layout_margin="8dp"
-            android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:hint="BIRTH DATE"
-            android:background="@drawable/border_box"/>
 
         <Button
             android:id="@+id/button_login"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:text="LOGIN"/>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:text="Log In"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginBottom="5dp"/>
+
+        <Button
+            android:id="@+id/button_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:text="Sign Up"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/forgotPASSID"
+                android:gravity="center"/>
+        </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
 
