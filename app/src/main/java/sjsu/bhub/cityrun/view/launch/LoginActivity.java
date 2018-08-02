@@ -6,7 +6,6 @@ import android.view.View;
 
 import sjsu.bhub.cityrun.BaseActivity;
 import sjsu.bhub.cityrun.R;
-import sjsu.bhub.cityrun.SignupActivity;
 import sjsu.bhub.cityrun.databinding.ActivityLoginBinding;
 import sjsu.bhub.cityrun.view.main.MainActivity;
 

@@ -27,6 +27,7 @@ import sjsu.bhub.cityrun.databinding.ActivityMainBinding;
 import sjsu.bhub.cityrun.service.LocationService;
 import sjsu.bhub.cityrun.service.StepCountService;
 import sjsu.bhub.cityrun.utils.PermissionUtil;
+import sjsu.bhub.cityrun.view.unity.UnityPlayerActivity;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> implements OnMapReadyCallback {
     private final String TAG = "MainActivity";
@@ -84,6 +85,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
                 }
             }
         });
+
+        binding.buttonAr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent unityActivity = new Intent(getApplicationContext(), UnityPlayerActivity.class);
+                startActivity(unityActivity);
+            }
+        });
     }
 
     private void initDrawerMenu() {
@@ -130,7 +139,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
             double latitude = intent.getDoubleExtra(EXTRA_LATITUDE, 0);
             double longitude = intent.getDoubleExtra(EXTRA_LONGITUDE, 0);
 
-//            showSnackBar("latitude: " + latitude + ",longitude: " + longitude);
             updateLocation(latitude, longitude);
         }
     }

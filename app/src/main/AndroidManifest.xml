@@ -31,7 +31,8 @@
         </activity>
         <activity android:name=".view.launch.LoginActivity" />
         <activity android:name=".view.main.MainActivity" />
-        <activity android:name=".SignupActivity" />
+        <activity android:name=".view.launch.SignupActivity" />
+        <activity android:name=".view.unity.UnityPlayerActivity"/>
         <service
             android:name=".service.StepCountService"
             android:enabled="true"
