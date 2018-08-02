@@ -6,17 +6,33 @@
         <import type="android.view.View"/>
     </data>
 
-    <LinearLayout
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/layout_toolbar"
-            bind:rightButton="@{View.GONE}" />
+        <LinearLayout
+            android:id="@+id/drawer_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/layout_toolbar"
+                bind:rightButton="@{View.GONE}" />
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/store_tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/store_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
 
-    </LinearLayout>
-
+        </LinearLayout>
+    </android.support.v4.widget.DrawerLayout>
 </layout>

@@ -1,12 +1,13 @@
-package sjsu.bhub.cityrun;
+package sjsu.bhub.cityrun.view.launch;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
+import sjsu.bhub.cityrun.BaseActivity;
+import sjsu.bhub.cityrun.R;
 import sjsu.bhub.cityrun.databinding.ActivitySignupBinding;
-import sjsu.bhub.cityrun.view.launch.LoginActivity;
 
 public class SignupActivity extends BaseActivity<ActivitySignupBinding> {
 
