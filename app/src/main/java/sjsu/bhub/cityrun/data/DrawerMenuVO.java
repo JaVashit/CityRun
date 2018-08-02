@@ -11,6 +11,7 @@ public class DrawerMenuVO {
         this.menuUnit = menuUnit;
     }
 
+
     public int getMenuIconId() {
         return menuIconId;
     }

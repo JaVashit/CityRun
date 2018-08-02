@@ -12,8 +12,8 @@ import java.util.List;
 
 import sjsu.bhub.cityrun.BaseRecyclerViewAdapter;
 import sjsu.bhub.cityrun.R;
-import sjsu.bhub.cityrun.databinding.LayoutDrawerItemBinding;
 import sjsu.bhub.cityrun.data.DrawerMenuVO;
+import sjsu.bhub.cityrun.databinding.LayoutDrawerItemBinding;
 
 public class DrawerMenuAdapter extends BaseRecyclerViewAdapter<DrawerMenuVO, DrawerMenuAdapter.DrawerMenuViewHolder> {
 
@@ -24,6 +24,7 @@ public class DrawerMenuAdapter extends BaseRecyclerViewAdapter<DrawerMenuVO, Dra
     public DrawerMenuAdapter(Context context, List<DrawerMenuVO> list){
         super(context, list);
     }
+
 
     @Override
     protected void onBindView(DrawerMenuViewHolder holder, int position) {

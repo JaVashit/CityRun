@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
 
@@ -27,6 +26,7 @@ import sjsu.bhub.cityrun.databinding.ActivityMainBinding;
 import sjsu.bhub.cityrun.service.LocationService;
 import sjsu.bhub.cityrun.service.StepCountService;
 import sjsu.bhub.cityrun.utils.PermissionUtil;
+import sjsu.bhub.cityrun.view.store.StoreActivity;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> implements OnMapReadyCallback {
     private final String TAG = "MainActivity";
@@ -88,12 +88,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
 
     private void initDrawerMenu() {
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+
         /*layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
                 return 0;
             }
         });*/
+
         binding.layoutDrawerMenu.recyclerViewMenu.setLayoutManager(layoutManager);
 
         ArrayList<DrawerMenuVO> menuList = new ArrayList<>();
@@ -101,10 +103,21 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
         menuList.add(new DrawerMenuVO(R.drawable.icon_treasure, "2000", "GOLD"));
         menuList.add(new DrawerMenuVO(R.drawable.icon_fire, "400", "Kcal"));
         menuList.add(new DrawerMenuVO(R.drawable.icon_distance, "5", "km"));
-//        menuList.add(new DrawerMenuVO(R.drawable.icon_store, "Store"));
+        //menuList.add(new DrawerMenuVO(R.drawable.icon_cart, "Store",""));
 
         adapter = new DrawerMenuAdapter(this, menuList);
         binding.layoutDrawerMenu.recyclerViewMenu.setAdapter(adapter);
+
+        binding.layoutDrawerMenu.storeLinearLayout.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), StoreActivity.class);
+                        startActivity(intent);
+                        overridePendingTransition(R.anim.enter_no_anim, R.anim.exit_no_anim);
+                        finish();
+                    }
+        });
+
     }
 
     @Override
