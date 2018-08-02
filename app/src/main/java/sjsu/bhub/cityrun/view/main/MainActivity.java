@@ -8,7 +8,6 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -17,6 +16,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
+import sjsu.bhub.cityrun.data.DrawerMenuVO;
 import sjsu.bhub.cityrun.databinding.ActivityMainBinding;
 import sjsu.bhub.cityrun.service.LocationService;
 import sjsu.bhub.cityrun.service.StepCountService;
@@ -26,6 +28,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
     private final String TAG = "MainActivity";
     public static final String EXTRA_LATITUDE = "EXTRA_LATITUDE";
     public static final String EXTRA_LONGITUDE = "EXTRA_LONGITUDE";
+
+    private DrawerMenuAdapter adapter;
 
     private String serviceData;
     private GoogleMap googleMap;
@@ -41,8 +45,22 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
         PermissionUtil.getPermission(this);
 
         initView();
+        initDrawerMenu();
         startLocationService();
         startStepCountService();
+    }
+
+    @Override
+    protected void onDestroy() {
+        finishService();
+        super.onDestroy();
+    }
+
+    public void finishService() {
+        Intent LocationService = new Intent(this, LocationService.class);
+        stopService(LocationService);
+        Intent StepCountService = new Intent(this, StepCountService.class);
+        stopService(StepCountService);
     }
 
     private void initView() {
@@ -62,6 +80,18 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
                 }
             }
         });
+    }
+
+    private void initDrawerMenu() {
+        ArrayList<DrawerMenuVO> menuList = new ArrayList<>();
+        menuList.add(new DrawerMenuVO(R.drawable.icon_step, "5000 / 10000 step"));
+        menuList.add(new DrawerMenuVO(R.drawable.icon_point, "2000 P"));
+        menuList.add(new DrawerMenuVO(R.drawable.icon_cal, "400 KCal"));
+        menuList.add(new DrawerMenuVO(R.drawable.icon_map, "5 km"));
+        menuList.add(new DrawerMenuVO(R.drawable.icon_store, "Store"));
+
+        adapter = new DrawerMenuAdapter(this, menuList);
+        binding.layoutDrawerMenu.listViewMenu.setAdapter(adapter);
     }
 
     @Override
@@ -87,7 +117,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
             double latitude = intent.getDoubleExtra(EXTRA_LATITUDE, 0);
             double longitude = intent.getDoubleExtra(EXTRA_LONGITUDE, 0);
 
-            showSnackBar("latitude: " + latitude + ",longitude: " + longitude);
+//            showSnackBar("latitude: " + latitude + ",longitude: " + longitude);
             updateLocation(latitude, longitude);
         }
     }
@@ -121,10 +151,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.i("PlayigReceiver", "IN");
             serviceData = intent.getStringExtra("stepService");
-            binding.layoutDrawerMenu.textStepCount.setText(serviceData);
-            Toast.makeText(getApplicationContext(), "Playing game", Toast.LENGTH_SHORT).show();
         }
     }
 }
