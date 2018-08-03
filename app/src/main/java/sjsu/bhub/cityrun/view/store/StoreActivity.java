@@ -30,8 +30,8 @@ public class StoreActivity extends BaseActivity<ActivityStoreBinding> {
         tabLayout = binding.storeTabLayout;
 
         tabLayout.addTab(tabLayout.newTab().setText("electronics"));
-        tabLayout.addTab(tabLayout.newTab().setText("electronics"));
-        tabLayout.addTab(tabLayout.newTab().setText("electronics"));
+        tabLayout.addTab(tabLayout.newTab().setText("Fitness"));
+        tabLayout.addTab(tabLayout.newTab().setText("Voucher"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         // Initializing ViewPager
