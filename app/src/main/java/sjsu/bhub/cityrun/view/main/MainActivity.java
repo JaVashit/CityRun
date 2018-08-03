@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import sjsu.bhub.cityrun.BaseActivity;
 import sjsu.bhub.cityrun.R;
 import sjsu.bhub.cityrun.data.DrawerMenuVO;
+import sjsu.bhub.cityrun.data.StepData;
 import sjsu.bhub.cityrun.databinding.ActivityMainBinding;
 import sjsu.bhub.cityrun.service.StepCountService;
 import sjsu.bhub.cityrun.utils.PermissionUtil;
@@ -108,8 +109,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
         binding.layoutDrawerMenu.recyclerViewMenu.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
         binding.layoutDrawerMenu.recyclerViewMenu.setHasFixedSize(true);
 
-        menuList = new ArrayList<>();
-        menuList.add(new DrawerMenuVO(R.drawable.icon_step, "STEP", "/ 10000",5000));
+
+        ArrayList<DrawerMenuVO> menuList = new ArrayList<>();
+        menuList.add(new DrawerMenuVO(R.drawable.icon_step, "STEP", "/ 10000", StepData.Step));
         menuList.add(new DrawerMenuVO(R.drawable.icon_coin, "POINT", "gold", 2000));
         menuList.add(new DrawerMenuVO(R.drawable.icon_treasure, "TREASURE", "box", 20));
         menuList.add(new DrawerMenuVO(R.drawable.icon_fire, "CALORIE", "kcal",400));
@@ -127,10 +129,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
                         overridePendingTransition(R.anim.enter_no_anim, R.anim.exit_no_anim);
                     }
         });
-
     }
-
-    ////////////////////////////////////// map
 
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private GoogleMap googleMap;
@@ -193,7 +192,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
                 }
                 return;
             }
-
         }
     }
 
@@ -224,9 +222,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
                 }
             };
 
-
-    //////////////////////////////////////////////step count
-
     private void startStepCountService() {
         Intent serviceIntent = new Intent(getApplicationContext(), StepCountService.class);
         BroadcastReceiver receiver = new PlayingReceiver();
@@ -245,7 +240,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
         @Override
         public void onReceive(Context context, Intent intent) {
             serviceData = intent.getStringExtra("stepService");
-            menuList.get(0).setStatusName(serviceData);
+            adapter.getItemList().get(0).setStatus(Integer.parseInt(serviceData));
+            adapter.notifyItemChanged(0);
         }
     }
 }
