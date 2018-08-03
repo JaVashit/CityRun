@@ -1,15 +1,16 @@
 package sjsu.bhub.cityrun.view.unity;
 
+import com.unity3d.player.*;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
-
-import com.unity3d.player.UnityPlayer;
-
+import android.view.WindowManager;
 
 public class UnityPlayerActivity extends Activity
 {
