@@ -29,10 +29,8 @@ public class DrawerMenuAdapter extends BaseRecyclerViewAdapter<DrawerMenuVO, Dra
     protected void onBindView(DrawerMenuViewHolder holder, int position) {
         final DrawerMenuVO item = itemList.get(position);
 
+        holder.binding.setItem(item);
         holder.binding.imageStatusIcon.setImageResource(item.getStatusIconId());
-        holder.binding.textStatusName.setText(item.getStatusName());
-        holder.binding.textStatusUnit.setText(item.getStatusUnit());
-        holder.binding.textStatus.setText("" + item.getStatus());
     }
 
     @NonNull
