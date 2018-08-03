@@ -36,10 +36,10 @@ public class ElectronicsFragment extends BaseFragment<FragmentElectronicsBinding
         binding.fragmentRecyclerViewMenu.setLayoutManager(layoutManager);
 
         ArrayList<DrawerMenuVO> menuList = new ArrayList<>();
-        menuList.add(new DrawerMenuVO(R.drawable.icon_step, "5000", "STEP"));
-        menuList.add(new DrawerMenuVO(R.drawable.icon_treasure, "2000", "GOLD"));
-        menuList.add(new DrawerMenuVO(R.drawable.icon_fire, "400", "Kcal"));
-        menuList.add(new DrawerMenuVO(R.drawable.icon_distance, "5", "km"));
+//        menuList.add(new DrawerMenuVO(R.drawable.icon_step, "5000", "STEP"));
+//        menuList.add(new DrawerMenuVO(R.drawable.icon_treasure, "2000", "GOLD"));
+//        menuList.add(new DrawerMenuVO(R.drawable.icon_fire, "400", "Kcal"));
+//        menuList.add(new DrawerMenuVO(R.drawable.icon_distance, "5", "km"));
 
         adapter = new DrawerMenuAdapter(context, menuList);
         binding.fragmentRecyclerViewMenu.setAdapter(adapter);
