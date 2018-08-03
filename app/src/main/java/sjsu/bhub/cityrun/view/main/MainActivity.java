@@ -17,9 +17,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -105,22 +107,17 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
     }
 
     private void initDrawerMenu() {
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
-
-        /*layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
-            @Override
-            public int getSpanSize(int position) {
-                return 0;
-            }
-        });*/
-
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayout.VERTICAL, false);
         binding.layoutDrawerMenu.recyclerViewMenu.setLayoutManager(layoutManager);
+        binding.layoutDrawerMenu.recyclerViewMenu.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
+        binding.layoutDrawerMenu.recyclerViewMenu.setHasFixedSize(true);
 
         ArrayList<DrawerMenuVO> menuList = new ArrayList<>();
-        menuList.add(new DrawerMenuVO(icon_step, "5000", "STEP"));
-        menuList.add(new DrawerMenuVO(icon_treasure, "2000", "GOLD"));
-        menuList.add(new DrawerMenuVO(icon_fire, "400", "Kcal"));
-        menuList.add(new DrawerMenuVO(icon_distance, "5", "km"));
+        menuList.add(new DrawerMenuVO(R.drawable.icon_step, "STEP", "/ 10000",5000));
+        menuList.add(new DrawerMenuVO(R.drawable.icon_coin, "POINT", "gold", 2000));
+        menuList.add(new DrawerMenuVO(R.drawable.icon_treasure, "TREASURE", "box", 20));
+        menuList.add(new DrawerMenuVO(R.drawable.icon_fire, "CALORIE", "kcal",400));
+        menuList.add(new DrawerMenuVO(R.drawable.icon_distance, "DISTANCE", "km",5));
         //menuList.add(new DrawerMenuVO(R.drawable.icon_cart, "Store",""));
 
         adapter = new DrawerMenuAdapter(this, menuList);

@@ -1,38 +1,47 @@
 package sjsu.bhub.cityrun.data;
 
 public class DrawerMenuVO {
-    private int menuIconId;
-    private String menuName;
-    private String menuUnit;
+    private int statusIconId;
+    private String statusName;
+    private String statusUnit;
+    private int status;
 
-    public DrawerMenuVO(int menuIconId, String menuName, String menuUnit) {
-        this.menuIconId = menuIconId;
-        this.menuName = menuName;
-        this.menuUnit = menuUnit;
+    public DrawerMenuVO(int statusIconId, String statusName, String statusUnit, int status) {
+        this.statusIconId = statusIconId;
+        this.statusName = statusName;
+        this.statusUnit = statusUnit;
+        this.status = status;
     }
 
-
-    public int getMenuIconId() {
-        return menuIconId;
+    public int getStatusIconId() {
+        return statusIconId;
     }
 
-    public void setMenuIconId(int menuIconId) {
-        this.menuIconId = menuIconId;
+    public void setStatusIconId(int statusIconId) {
+        this.statusIconId = statusIconId;
     }
 
-    public String getMenuName() {
-        return menuName;
+    public String getStatusName() {
+        return statusName;
     }
 
-    public void setMenuName(String menuName) {
-        this.menuName = menuName;
+    public void setStatusName(String statusName) {
+        this.statusName = statusName;
     }
 
-    public String getMenuUnit() {
-        return menuUnit;
+    public String getStatusUnit() {
+        return statusUnit;
     }
 
-    public void setMenuUnit(String menuUnit) {
-        this.menuUnit = menuUnit;
+    public void setStatusUnit(String statusUnit) {
+        this.statusUnit = statusUnit;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }
