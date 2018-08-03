@@ -116,5 +116,6 @@
             android:textSize="@dimen/text_navigation_menu"
             android:text="Log Out"
             android:textColor="@color/darkGray"/>
+
     </LinearLayout>
 </layout>

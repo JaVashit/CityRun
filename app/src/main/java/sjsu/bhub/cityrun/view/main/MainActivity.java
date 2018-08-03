@@ -43,16 +43,12 @@ import sjsu.bhub.cityrun.utils.PermissionUtil;
 import sjsu.bhub.cityrun.view.store.StoreActivity;
 import sjsu.bhub.cityrun.view.unity.UnityPlayerActivity;
 
-import static sjsu.bhub.cityrun.R.drawable.icon_distance;
-import static sjsu.bhub.cityrun.R.drawable.icon_fire;
-import static sjsu.bhub.cityrun.R.drawable.icon_step;
-import static sjsu.bhub.cityrun.R.drawable.icon_treasure;
-
 public class MainActivity extends BaseActivity<ActivityMainBinding> implements OnMapReadyCallback {
     private final String TAG = "MainActivity";
 
     private DrawerMenuAdapter adapter;
     private String serviceData;
+    private ArrayList<DrawerMenuVO> menuList;
 
     @Override
     protected int getLayoutId() {
@@ -96,7 +92,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
                 }
             }
         });
-
+///////////////////////////////////////////////////////////// unity
         binding.buttonAr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,7 +108,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
         binding.layoutDrawerMenu.recyclerViewMenu.addItemDecoration(new DividerItemDecoration(getApplicationContext(), DividerItemDecoration.VERTICAL));
         binding.layoutDrawerMenu.recyclerViewMenu.setHasFixedSize(true);
 
-        ArrayList<DrawerMenuVO> menuList = new ArrayList<>();
+        menuList = new ArrayList<>();
         menuList.add(new DrawerMenuVO(R.drawable.icon_step, "STEP", "/ 10000",5000));
         menuList.add(new DrawerMenuVO(R.drawable.icon_coin, "POINT", "gold", 2000));
         menuList.add(new DrawerMenuVO(R.drawable.icon_treasure, "TREASURE", "box", 20));
@@ -249,6 +245,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
         @Override
         public void onReceive(Context context, Intent intent) {
             serviceData = intent.getStringExtra("stepService");
+            menuList.get(0).setStatusName(serviceData);
         }
     }
 }

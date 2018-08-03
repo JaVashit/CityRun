@@ -9,18 +9,18 @@ import java.util.ArrayList;
 
 import sjsu.bhub.cityrun.BaseFragment;
 import sjsu.bhub.cityrun.R;
-import sjsu.bhub.cityrun.data.DrawerMenuVO;
-import sjsu.bhub.cityrun.databinding.FragmentElectronicsBinding;
-import sjsu.bhub.cityrun.view.main.DrawerMenuAdapter;
+import sjsu.bhub.cityrun.data.StoreMenuVO;
+import sjsu.bhub.cityrun.databinding.LayoutStoreMenuBinding;
 
-public class ElectronicsFragment extends BaseFragment<FragmentElectronicsBinding> {
 
-    private DrawerMenuAdapter adapter;
+public class ElectronicsFragment extends BaseFragment<LayoutStoreMenuBinding> {
+
+    private StoreMenuAdapter adapter;
     View view;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_electronics;
+        return R.layout.layout_store_menu;
     }
 
     @Override
@@ -35,13 +35,15 @@ public class ElectronicsFragment extends BaseFragment<FragmentElectronicsBinding
 
         binding.fragmentRecyclerViewMenu.setLayoutManager(layoutManager);
 
-        ArrayList<DrawerMenuVO> menuList = new ArrayList<>();
-//        menuList.add(new DrawerMenuVO(R.drawable.icon_step, "5000", "STEP"));
-//        menuList.add(new DrawerMenuVO(R.drawable.icon_treasure, "2000", "GOLD"));
-//        menuList.add(new DrawerMenuVO(R.drawable.icon_fire, "400", "Kcal"));
-//        menuList.add(new DrawerMenuVO(R.drawable.icon_distance, "5", "km"));
+        ArrayList<StoreMenuVO> menuList = new ArrayList<>();
+        menuList.add(new StoreMenuVO(R.drawable.test1, "Ipad 64G", "$348,00"));
+        menuList.add(new StoreMenuVO(R.drawable.test2, "Bluetooth Speaker", "$234.39"));
+        menuList.add(new StoreMenuVO(R.drawable.test3, "Bang & Olufsen A9", "$552.00"));
+        menuList.add(new StoreMenuVO(R.drawable.test4, "Samsung Tablet", "$552.00"));
+        menuList.add(new StoreMenuVO(R.drawable.test5, "Airpod", "$159,99"));
+        menuList.add(new StoreMenuVO(R.drawable.test6, "Mac Pro Laptop", "$409.78"));
 
-        adapter = new DrawerMenuAdapter(context, menuList);
+        adapter = new StoreMenuAdapter(context, menuList);
         binding.fragmentRecyclerViewMenu.setAdapter(adapter);
     }
 

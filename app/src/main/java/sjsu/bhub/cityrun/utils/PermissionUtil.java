@@ -22,11 +22,11 @@ public class PermissionUtil {
         };
 
         if(TedPermission.isDenied(context, Manifest.permission.ACCESS_COARSE_LOCATION)
-                || TedPermission.isDenied(context, Manifest.permission.ACCESS_FINE_LOCATION)){
+                || TedPermission.isDenied(context, Manifest.permission.ACCESS_FINE_LOCATION)||TedPermission.isDenied(context, Manifest.permission.CAMERA)){
 
             TedPermission.with(context)
                     .setPermissionListener(permissionListener)
-                    .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION)
+                    .setPermissions(Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION ,Manifest.permission.CAMERA)
                     .check();
         }
     }
