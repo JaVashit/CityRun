@@ -12,6 +12,7 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -19,7 +20,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -142,6 +142,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1;
     private GoogleMap googleMap;
     private boolean stateMarker = true;
+    private boolean mCompassEnabled;
+    LocationManager manager;
 
     @Override
     public void onMapReady(GoogleMap map) {
@@ -155,6 +157,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(bitmap));
             googleMap.addMarker(markerOptions);
             stateMarker = false;
+            showDefaultLocation();
         }
 
         googleMap.setOnMyLocationButtonClickListener(onMyLocationButtonClickListener);
@@ -179,10 +182,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> implements O
     }
 
     private void showDefaultLocation() {
-        Toast.makeText(this, "Location permission not granted, " +
-                        "showing default location",
-                Toast.LENGTH_SHORT).show();
-        LatLng redmond = new LatLng(47.6739881, -122.121512);
+        googleMap.setMinZoomPreference(12);
+        LatLng redmond = new LatLng(37.336786, -121.878610);
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(redmond));
     }
 
